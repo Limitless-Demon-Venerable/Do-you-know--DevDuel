@@ -1,8 +1,3 @@
-// Take the choice from frontend Drop Down menue [easy,med,hard,mix]
-const choice = "replace it with the element's value"
-let url = ''
-
-
 const playButton = document.querySelector('#play button'); 
 
 playButton.addEventListener('click', () => {
@@ -14,8 +9,19 @@ playButton.addEventListener('click', () => {
         console.log("Playback failed:", error);
     });
 
+    let user_Choice = document.querySelector('input[name="level"]:checked')
 
-});
+    if (!user_Choice) {
+        alert("Please select a difficulty");
+        return;
+    }
+
+
+
+
+// Take the choice from frontend Drop Down menue [easy,med,hard,mix]
+let choice = user_Choice.value;
+let url = ''
 
 
 // Api url
@@ -42,6 +48,12 @@ switch (choice) {
         break;
 }
 
+console.log("Selected value:", choice);
+console.log("Final URL:", url);
+
+
+});
+
 // the arrays where I will destructure; I plan to use map()/for each in future
 let typeL = []
 let diff = []
@@ -53,10 +65,6 @@ let iAns = [] //incorrect answer array
 getData()
 
 let pages = document.getElementsByClassName('page')
-
-
-
-
 
 
 

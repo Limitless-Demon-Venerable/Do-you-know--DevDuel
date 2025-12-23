@@ -106,15 +106,14 @@ body{
     box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
 }
 
-#play h5 {
+#play span {
     font-size: 2rem;
-    display: flex;
     justify-content: space-between; 
     border-bottom: 1px dashed #e0ccb8; 
     padding-bottom: 5px;
 }
 
-#play h5:last-child {
+#play span:last-child {
     border-bottom: none; 
 }
 
@@ -147,7 +146,9 @@ body{
     transform: scale(0.98); 
 }
 
-
+.category label{
+    margin: 18px 0;
+}
 
 .page {
 
