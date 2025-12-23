@@ -1,26 +1,9 @@
 const playButton = document.querySelector('#play button'); 
-
-playButton.addEventListener('click', () => {
-    audio.muted = false;
-    audio.volume = 0.15
-    audio.play().then(() => {
-        console.log("Audio playing successfully.");
-    }).catch(error => {
-        console.log("Playback failed:", error);
-    });
-
-    let user_Choice = document.querySelector('input[name="level"]:checked')
-
-    if (!user_Choice) {
-        alert("Please select a difficulty");
-        return;
-    }
-
-
+let user_Choice = ''
 
 
 // Take the choice from frontend Drop Down menue [easy,med,hard,mix]
-let choice = user_Choice.value;
+let choice = '';
 let url = ''
 
 
@@ -29,6 +12,24 @@ let mix = 'https://opentdb.com/api.php?amount=10'
 let easy = 'https://opentdb.com/api.php?amount=10&difficulty=easy'
 let med = 'https://opentdb.com/api.php?amount=10&difficulty=medium'
 let hard = 'https://opentdb.com/api.php?amount=10&difficulty=hard'
+
+
+playButton.addEventListener('click', () => {
+    audio.muted = false;
+    audio.volume = 0.20
+    audio.play().then(() => {
+        console.log("Audio playing successfully.");
+    }).catch(error => {
+        console.log("Playback failed:", error);
+    });
+
+     
+    user_Choice = document.querySelector('input[name="level"]:checked') 
+    choice = user_Choice.value;
+    if (!user_Choice) {
+        alert("Please select a difficulty");
+        return;
+    }
 
 
 // changing the url depending on the selected option 
@@ -90,7 +91,7 @@ async function getData() {
         enableGameLogic();
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
     }
 }
 
