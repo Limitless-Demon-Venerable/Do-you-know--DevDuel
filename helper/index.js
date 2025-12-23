@@ -1,8 +1,13 @@
-const playButton = document.querySelector('#play button'); 
+const playButton = document.querySelector('#play button');
+const videoElement = document.getElementById('startVideo');
+const audio = document.getElementById('backgroundMusic');
+const splashScreen = document.getElementById('splash');
 let user_Choice = ''
 
-
-// Take the choice from frontend Drop Down menue [easy,med,hard,mix]
+// Hide splash screen after 5 seconds
+setTimeout(() => {
+    splashScreen.classList.add('hide');
+}, 5000);
 let choice = '';
 let url = ''
 
@@ -13,18 +18,28 @@ let easy = 'https://opentdb.com/api.php?amount=10&difficulty=easy'
 let med = 'https://opentdb.com/api.php?amount=10&difficulty=medium'
 let hard = 'https://opentdb.com/api.php?amount=10&difficulty=hard'
 
+videoElement.addEventListener('ended', (event) => {
+    document.getElementById('main').style.display = 'none';
+    document.getElementById('page1').style.display = 'flex';
+});
+
 
 playButton.addEventListener('click', () => {
     audio.muted = false;
     audio.volume = 0.20
+    document.getElementById('main').style.display = 'flex'
+    document.getElementById('play').style.display = 'none'
+    videoElement.play()
+
+
     audio.play().then(() => {
         console.log("Audio playing successfully.");
     }).catch(error => {
         console.log("Playback failed:", error);
     });
 
-     
-    user_Choice = document.querySelector('input[name="level"]:checked') 
+
+    user_Choice = document.querySelector('input[name="level"]:checked')
     choice = user_Choice.value;
     if (!user_Choice) {
         alert("Please select a difficulty");
@@ -32,26 +47,27 @@ playButton.addEventListener('click', () => {
     }
 
 
-// changing the url depending on the selected option 
+    // changing the url depending on the selected option 
 
-switch (choice) {
-    case "easy":
-        url = easy
-        break;
-    case "medium":
-        url = med
-        break;
-    case "hard":
-        url = hard
-        break
-    default:
-        url = mix
-        break;
-}
+    switch (choice) {
+        case "easy":
+            url = easy
+            break;
+        case "medium":
+            url = med
+            break;
+        case "hard":
+            url = hard
+            break
+        default:
+            url = mix
+            break;
+    }
 
-console.log("Selected value:", choice);
-console.log("Final URL:", url);
+    console.log("Selected value:", choice);
+    console.log("Final URL:", url);
 
+    getData(url)
 
 });
 
@@ -63,7 +79,7 @@ let questionL = []
 let cAns = [] // correct answer array
 let iAns = [] //incorrect answer array
 
-getData()
+
 
 let pages = document.getElementsByClassName('page')
 
@@ -73,9 +89,9 @@ let pages = document.getElementsByClassName('page')
 
 // FUNCTIONS
 
-async function getData() {
+async function getData(URL) {
     try {
-        let response = await fetch(url)
+        let response = await fetch(URL)
         if (!response.ok) {
             throw new Error(`Error: ${response.status}`)
         }

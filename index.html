@@ -13,13 +13,9 @@
     <source src="./assets/tradegy of gods chosen emperor.mp3" type="audio/mpeg">
 </audio>
 
-
-<main id="main">
-    <img src="./assets/web gfx/mobile.jpeg" alt="">
-    <Video id="startVideo" autoplay muted playsinline>
-        <source src="./assets/quiz start.mp4" >
-    </Video>
-</main>
+<div id="splash" class="splash-screen">
+    <img src="./assets/web gfx/mobile.jpeg" alt="Welcome">
+</div>
 
 <div id="play">
     <img src="./assets/web gfx/focus.jpeg" alt="">
@@ -49,8 +45,6 @@
             <span>Mix</span>
           </label>
         </div>
-
-
     
     <!-- <div>
         <h5>Easy: 1 point</h5>
@@ -62,7 +56,11 @@
     <button>Lets Go!</button>
 </div>
 
-
+<main id="main">
+    <Video id="startVideo" muted playsinline>
+        <source src="./assets/quiz start.mp4" >
+    </Video>
+</main>
 
 <!-- Trivia Pages -->
 
@@ -231,24 +229,7 @@
 <!-- Scripts -->
 <script src="./helper/index.js"></script> 
 
-<script>
-    const videoElement = document.getElementById('startVideo');
-    const audio = document.getElementById('backgroundMusic');
 
-
-    
-    videoElement.addEventListener('ended', (event) => {
-        videoElement.hidden = true;
-        setTimeout(() => { 
-            if(videoElement.parentElement) {
-                videoElement.parentElement.remove();
-            }
-            document.querySelector('#play').style.display = 'flex';
-        }, 3000);
-    });
-
-
-</script>
 
 
    
