@@ -280,8 +280,8 @@ function enableGameLogic() {
                         opt.style.borderColor = '#90EE90';
                     }
                     if (opt === selected && !isCorrect){
-                        opt.style.backgroundColor = '#FFB6C1';
-                        opt.style.borderColor = '#FFB6C1';
+                        opt.style.backgroundColor = '#fb7c55ff';
+                        opt.style.borderColor = '#fb7c55ff';
                     }
                 });
 
@@ -318,7 +318,7 @@ function enableGameLogic() {
                     const newActive = getActivePage();
                     const newIdx = getIndexOf(newActive);
                     changePage(newIdx + 1);
-                }, 900);
+                }, 1500);
             } else {
                 // On the final submission, show the results screen
                 showResults();
